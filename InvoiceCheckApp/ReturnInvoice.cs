@@ -32,12 +32,12 @@ namespace InvoiceCheckApp
             XmlNode _rootnode = xmlDoc.SelectSingleNode("rss");
             XmlNodeList xnlA = _rootnode.ChildNodes;
 
-            foreach (XmlNode xnA in xnlA)//遍歷rss底下的屬性
+            foreach (XmlNode xnA in xnlA)//遍歷rss底下的節點
             {
                 XmlElement xeB = (XmlElement)xnA;
                 XmlNodeList xnlB = xeB.ChildNodes;
 
-                foreach (XmlNode xnB in xnlB)//遍歷channel底下的屬性
+                foreach (XmlNode xnB in xnlB)//遍歷channel底下的節點
                 {
                     XmlElement xeC = (XmlElement)xnB;
 
@@ -48,7 +48,7 @@ namespace InvoiceCheckApp
 
                         string date = "";
 
-                        foreach (XmlNode xnC in xnlC)//遍歷item底下的屬性
+                        foreach (XmlNode xnC in xnlC)//遍歷item底下的節點
                         {
                             XmlElement xeD = (XmlElement)xnC;
                             switch (xeD.Name)
@@ -62,7 +62,7 @@ namespace InvoiceCheckApp
                                     string pattern = @"<p>.*?<\/p>";
 
                                     Regex regex = new Regex(pattern);
-                                    MatchCollection _matchList = regex.Matches(xeD.InnerText);
+                                    MatchCollection _matchList = regex.Matches(xeD.InnerText);//取出<p>與</p>之間的字串
                                     foreach (var matchItem in _matchList)
                                     {
 
